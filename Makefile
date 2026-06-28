@@ -1,10 +1,13 @@
-all: codegen test
+all: fmt test bench
 
-.PHONY: codegen
-codegen:
-	go run cmd/codegen/main.go
+.PHONY: fmt
+fmt:
+	gofmt -w .
 
 .PHONY: test
 test:
 	go test ./...
 
+.PHONY: bench
+bench:
+	go test -bench=. -benchmem ./...
